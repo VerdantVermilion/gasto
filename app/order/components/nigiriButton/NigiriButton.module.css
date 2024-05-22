@@ -1,0 +1,46 @@
+.nigiri_screen {
+  background-color: black;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  min-height: 650px; /* 最小の高さを設定 */
+}
+
+.nigiris {
+  width: 950px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.nigiri_button {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  width: 250px;
+  height: 250px;
+  margin: 0 10px 10px 0;
+}
+
+.pagination {
+  width: 790px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: auto; /* 自動的に上部のスペースを最大化 */
+}
+
+.page_button {
+  background-color: azure;
+  color: black;
+  padding: 10px;
+}
+
+.number {
+  color: white;
+}

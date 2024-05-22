@@ -1,0 +1,43 @@
+.table {
+  background-color: white;
+  text-align: right;
+  empty-cells: show;
+  border-collapse: collapse;
+  border: 2px solid #000000;
+  width: 400px;
+  height: 450px;
+  margin-top: 22px;
+}
+
+.toc {
+  height: 80px;
+  border: 1px solid #000000;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+.th {
+  border: 1px solid #000000;
+}
+
+.tr .td {
+  border: 1px solid #000000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tr {
+  height: 90px;
+}
+
+.increment_button .decrement_button {
+  width: 15px;
+}
+
+.delete_button {
+  background-color: red;
+  color: white;
+  border: 1px solid #000000;
+  width: 30px;
+}

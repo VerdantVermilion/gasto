@@ -1,0 +1,23 @@
+.tops {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.selectedTab {
+  background-color: #fb0707;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  border: 1px solid #a84646;
+}
+
+.top_button {
+  background-color: rgb(246, 110, 110);
+  border: 1px solid #a84646;
+  border: 5px outset rgb(212, 83, 83);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
