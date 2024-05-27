@@ -7,6 +7,7 @@ import NigiriButton from "./components/nigiriButton/NigiriButton";
 import TemporaryTable from "./components/temporaryTable/TemporaryTable";
 import SubmitButton from "./components/submitButton/SubmitButton";
 import OrderHistory from "./components/orderHistory/OrderHistory";
+import Link from 'next/link';
 
 const Order = () => {
   const MAX_ORDERS = 4;
@@ -53,9 +54,13 @@ const Order = () => {
         />
         <div>
           <TemporaryTable items={items} onRemoveItem={removeItem} />
-          <SubmitButton onSubmit={handleSubmit} />
+          <div className={styled.submit_button}>
+            <SubmitButton onSubmit={handleSubmit} />
+          </div>
+          <Link href="/history">
+            <button className={styled.history_button}>注文履歴を見る</button>
+          </Link>
         </div>
-        <OrderHistory history={orderHistory} />
       </div>
     </div>
   );

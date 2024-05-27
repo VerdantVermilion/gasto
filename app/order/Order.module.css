@@ -14,3 +14,20 @@
   display: flex;
   justify-content: space-around;
 }
+
+.submit_button {
+  margin-bottom: 20px; /* 下にスペースを確保 */
+}
+
+.history_button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.history_button:hover {
+  background-color: #45a049;
+}

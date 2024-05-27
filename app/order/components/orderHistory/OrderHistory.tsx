@@ -1,12 +1,11 @@
-"use client";
-
+// components/orderHistory/OrderHistory.tsx
 import React from "react";
 
 interface OrderHistoryProps {
-  history: string[][];
+  history?: string[][]; // historyをオプショナルに変更
 }
 
-const OrderHistory: React.FC<OrderHistoryProps> = ({ history }) => {
+const OrderHistory: React.FC<OrderHistoryProps> = ({ history = [] }) => {
   return (
     <div>
       <h2>注文履歴</h2>
