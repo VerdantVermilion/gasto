@@ -4,34 +4,37 @@ import styled from "./NigiriButton.module.css";
 
 interface NigiriButtonProps {
   category: string;
-  onItemClick: (item: string) => void;
+  onItemClick: (item: { name: string, price: number }) => void;
 }
 
+// ランダムな価格を生成する関数
+const getRandomPrice = () => Math.floor(Math.random() * 101) + 100;
+
 const allItems = [
-  "まぐろ",
-  "漬けまぐろ",
-  "サーモン",
-  "えび",
-  "ぶり",
-  "甘えび",
-  "いか",
-  "えんがわ",
-  "穴子",
-  "うに",
-  "ネギトロ軍艦",
-  "ツナマヨ軍艦",
-  "コーンマヨ軍艦",
-  "シーサラダ軍艦",
-  "鉄火巻き",
-  "納豆巻き",
-  "醤油ラーメン",
-  "みそラーメン",
-  "たら白子",
-  "あん肝",
-  "期間限定300円皿",
-  "期間限定500円皿",
-  "シャーベット",
-  "オレンジジュース",
+  { name: "まぐろ", price: getRandomPrice() },
+  { name: "漬けまぐろ", price: getRandomPrice() },
+  { name: "サーモン", price: getRandomPrice() },
+  { name: "えび", price: getRandomPrice() },
+  { name: "ぶり", price: getRandomPrice() },
+  { name: "甘えび", price: getRandomPrice() },
+  { name: "いか", price: getRandomPrice() },
+  { name: "えんがわ", price: getRandomPrice() },
+  { name: "穴子", price: getRandomPrice() },
+  { name: "うに", price: getRandomPrice() },
+  { name: "ネギトロ軍艦", price: getRandomPrice() },
+  { name: "ツナマヨ軍艦", price: getRandomPrice() },
+  { name: "コーンマヨ軍艦", price: getRandomPrice() },
+  { name: "シーサラダ軍艦", price: getRandomPrice() },
+  { name: "鉄火巻き", price: getRandomPrice() },
+  { name: "納豆巻き", price: getRandomPrice() },
+  { name: "醤油ラーメン", price: getRandomPrice() },
+  { name: "みそラーメン", price: getRandomPrice() },
+  { name: "たら白子", price: getRandomPrice() },
+  { name: "あん肝", price: getRandomPrice() },
+  { name: "期間限定300円皿", price: getRandomPrice() },
+  { name: "期間限定500円皿", price: getRandomPrice() },
+  { name: "シャーベット", price: getRandomPrice() },
+  { name: "オレンジジュース", price: getRandomPrice() },
 ];
 
 const ITEMS_PER_PAGE = 6;
@@ -44,11 +47,11 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
       case "トップ":
         return true;
       case "フェア":
-        return ["期間限定300円皿", "期間限定500円皿"].includes(item);
+        return ["期間限定300円皿", "期間限定500円皿"].includes(item.name);
       case "ミニしゃり":
-        return item === "うに";
+        return item.name === "うに";
       case "にぎり":
-        return ["まぐろ", "漬けまぐろ", "サーモン", "えんがわ"].includes(item);
+        return ["まぐろ", "漬けまぐろ", "サーモン", "えんがわ"].includes(item.name);
       case "軍艦・巻物":
         return [
           "ネギトロ軍艦",
@@ -57,13 +60,13 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
           "シーサラダ軍艦",
           "鉄火巻き",
           "納豆巻き",
-        ].includes(item);
+        ].includes(item.name);
       case "麺類":
-        return ["醤油ラーメン", "みそラーメン"].includes(item);
+        return ["醤油ラーメン", "みそラーメン"].includes(item.name);
       case "サイドメニュー":
-        return ["たら白子", "あん肝"].includes(item);
+        return ["たら白子", "あん肝"].includes(item.name);
       case "デザート・ドリンク":
-        return ["シャーベット", "オレンジジュース"].includes(item);
+        return ["シャーベット", "オレンジジュース"].includes(item.name);
       case "お持ち帰り・ご注文":
         return [
           "いか",
@@ -72,7 +75,7 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
           "穴子",
           "うに",
           "ネギトロ軍艦",
-        ].includes(item);
+        ].includes(item.name);
       default:
         return true;
     }
@@ -97,10 +100,10 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
         {currentItems.map((item) => (
           <li
             className={styled.nigiri_button}
-            key={item}
+            key={item.name}
             onClick={() => onItemClick(item)}
           >
-            {item}
+            {item.name}
           </li>
         ))}
       </ul>

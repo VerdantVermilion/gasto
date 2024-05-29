@@ -6,14 +6,19 @@ import TopButton from "./components/topButton/TopButton";
 import NigiriButton from "./components/nigiriButton/NigiriButton";
 import TemporaryTable from "./components/temporaryTable/TemporaryTable";
 import SubmitButton from "./components/submitButton/SubmitButton";
-import OrderHistory from "./components/orderHistory/OrderHistory";
 import Link from 'next/link';
+
+interface Item {
+  name: string;
+  quantity: number;
+  price: number;
+}
 
 const Order = () => {
   const MAX_ORDERS = 4;
   const [selectedCategory, setSelectedCategory] = useState("トップ");
-  const [items, setItems] = useState<string[]>([]);
-  const [orderHistory, setOrderHistory] = useState<string[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
+  const [orderHistory, setOrderHistory] = useState<Item[][]>([]);
 
   useEffect(() => {
     const storedHistory = localStorage.getItem("orderHistory");
@@ -30,12 +35,17 @@ const Order = () => {
     setSelectedCategory(category);
   };
 
-  const handleItemClick = (item: string) => {
-    if (items.length < MAX_ORDERS) {
-      setItems([...items, item]);
-    } else {
-      console.log("注文の最大数に達しました");
-    }
+  const handleItemClick = (item: { name: string, price: number }) => {
+    setItems(prevItems => {
+      const existingItemIndex = prevItems.findIndex(existingItem => existingItem.name === item.name);
+      if (existingItemIndex >= 0) {
+        const updatedItems = [...prevItems];
+        updatedItems[existingItemIndex].quantity += 1;
+        return updatedItems;
+      } else {
+        return [...prevItems, { ...item, quantity: 1 }];
+      }
+    });
   };
 
   const handleSubmit = () => {

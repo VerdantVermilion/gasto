@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled from "./TemporaryTable.module.css";
 
-interface TemporaryTableProps {
-  items: string[];
+interface Item {
+  name: string;
+  quantity: number;
+  price: number;
 }
 
-const TemporaryTable = ({
-  items,
-  onRemoveItem,
-}: TemporaryTableProps & { onRemoveItem: (index: number) => void }) => {
+interface TemporaryTableProps {
+  items: Item[];
+  onRemoveItem: (index: number) => void;
+}
+
+const TemporaryTable = ({ items, onRemoveItem }: TemporaryTableProps) => {
   const MAX_ORDERS = 4;
 
   const [quantities, setQuantities] = useState<number[]>(
@@ -16,23 +20,29 @@ const TemporaryTable = ({
   );
 
   useEffect(() => {
-    // 関数型アップデートを使用して quantities の現在の値にアクセス
-    setQuantities((currentQuantities) =>
-      items.map((item, index) => (item ? currentQuantities[index] || 1 : 0))
-    );
-  }, [items]); // quantities を依存配列に含めない
+    // アイテムの数量を更新
+    setQuantities(items.map((item) => item.quantity));
+  }, [items]);
 
   const incrementQuantity = (index: number) => {
     const totalQuantity = quantities.reduce((acc, qty) => acc + qty, 0);
     if (totalQuantity < MAX_ORDERS) {
-      setQuantities(quantities.map((qty, i) => (i === index ? qty + 1 : qty)));
+      const newQuantities = quantities.map((qty, i) => (i === index ? qty + 1 : qty));
+      setQuantities(newQuantities);
+      updateItemQuantity(index, newQuantities[index]);
     }
   };
 
   const decrementQuantity = (index: number) => {
-    setQuantities(
-      quantities.map((qty, i) => (i === index && qty > 1 ? qty - 1 : qty))
-    );
+    if (quantities[index] > 1) {
+      const newQuantities = quantities.map((qty, i) => (i === index ? qty - 1 : qty));
+      setQuantities(newQuantities);
+      updateItemQuantity(index, newQuantities[index]);
+    }
+  };
+
+  const updateItemQuantity = (index: number, quantity: number) => {
+    items[index].quantity = quantity;
   };
 
   return (
@@ -51,8 +61,8 @@ const TemporaryTable = ({
           const item = items[index];
           return (
             <tr className={styled.tr} key={index}>
-              <td className={styled.td}>{item || ""}</td>
-              <td className={styled.td}>{item ? quantities[index] : ""}</td>
+              <td className={styled.td}>{item ? item.name : ""}</td>
+              <td className={styled.td}>{item ? item.quantity : ""}</td>
               <td
                 className={`${styled.td} ${styled.increment_button}`}
                 onClick={() => item && incrementQuantity(index)}
