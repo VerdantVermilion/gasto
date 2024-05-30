@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from 'next/link';
+import BackButton from "./components/backButton/BackButton";
 
 interface Item {
   name: string;
@@ -69,9 +70,7 @@ const HistoryPage = () => {
         </>
       )}
       <button onClick={clearHistory}>注文履歴を削除</button>
-      <Link href="/">
-        <button>戻る</button>
-      </Link>
+      <BackButton />
     </div>
   );
 };

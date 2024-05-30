@@ -124,7 +124,8 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
             key={item.name}
             onClick={() => onItemClick(item)}
           >
-            {item.name}
+            <div>{item.name}</div>
+            <div className={styled.price}>{item.price}円</div>
           </li>
         ))}
       </ul>
