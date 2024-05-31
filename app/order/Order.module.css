@@ -31,3 +31,14 @@
 .history_button:hover {
   background-color: #45a049;
 }
+
+.fixed_buttons {
+  position: fixed;
+  top: 20%;
+  right: 0;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

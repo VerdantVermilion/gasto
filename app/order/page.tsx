@@ -6,6 +6,9 @@ import TopButton from "./components/topButton/TopButton";
 import NigiriButton from "./components/nigiriButton/NigiriButton";
 import TemporaryTable from "./components/temporaryTable/TemporaryTable";
 import SubmitButton from "./components/submitButton/SubmitButton";
+import CenterButton from "./components/centerButton/CenterButton";
+import CallButton from "./components/callButton/CallButton";
+import OrderCartButton from "./components/orderCartButton/OrderCartButton";
 import Link from 'next/link';
 
 interface Item {
@@ -71,6 +74,11 @@ const Order = () => {
             <button className={styled.history_button}>注文履歴を見る</button>
           </Link> */}
         </div>
+      </div>
+      <div className={styled.fixed_buttons}>
+        <CallButton />
+        <CenterButton />
+        <OrderCartButton />
       </div>
     </div>
   );
