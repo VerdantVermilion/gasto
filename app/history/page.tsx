@@ -38,33 +38,29 @@ const HistoryPage = () => {
       {orderHistory.length === 0 ? (
         <p className={styles.noHistory}>注文履歴がありません。</p>
       ) : (
-        <>
-          {orderHistory.map((order, index) => (
-            <div key={index} className={styles.orderItem}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>商品名</th>
-                    <th>数量</th>
-                    <th>価格</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order.map((item, itemIndex) => (
-                    <tr key={itemIndex} className={styles.item}>
-                      <td>{item.name}</td>
-                      <td>{item.quantity}</td>
-                      <td>{item.price}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
-          <div className={styles.orderItem}>
+        <div className={styles.orderItem}>
+          <table>
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>数量</th>
+                <th>価格</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderHistory.flat().map((item, itemIndex) => (
+                <tr key={itemIndex} className={styles.item}>
+                  <td>{item.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className={styles.orderTotal}>
             <h2 className={styles.orderTitle}>全ての注文の合計価格: {totalPrice}</h2>
           </div>
-        </>
+        </div>
       )}
       <button onClick={clearHistory}>注文履歴を削除</button>
       <BackButton />
