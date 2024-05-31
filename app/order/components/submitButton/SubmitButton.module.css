@@ -1,4 +1,8 @@
-/* SubmitButton.module.css */
+.submit {
+  display: none;
+}
+
+/* 
 .submit {
   background-color: rgb(255, 153, 0);
   font-size: 24px;
@@ -7,7 +11,7 @@
   border-radius: 3px;
   margin-top: 40px;
   padding: 10px;
-  cursor: pointer; /* ボタンのようなスタイルを追加 */
+  cursor: pointer; 
 }
 
 .popup {
@@ -27,4 +31,4 @@
   padding: 20px;
   border-radius: 5px;
   text-align: center;
-}
+} */

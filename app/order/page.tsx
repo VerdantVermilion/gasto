@@ -67,9 +67,9 @@ const Order = () => {
           <div className={styled.submit_button}>
             <SubmitButton onSubmit={handleSubmit} />
           </div>
-          <Link href="/history">
+          {/* <Link href="/history">
             <button className={styled.history_button}>注文履歴を見る</button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
