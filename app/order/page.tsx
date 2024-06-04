@@ -65,20 +65,20 @@ const Order = () => {
           category={selectedCategory}
           onItemClick={handleItemClick}
         />
+      </div>
+      <div className={styled.fixed_buttons}>
+        <CallButton />
+        <CenterButton />
+        <div>
+          <Link href="/history">
+          <button className={styled.history_button}>注文履歴</button>
+        </Link> </div>
         <div>
           <TemporaryTable items={items} onRemoveItem={removeItem} />
           <div className={styled.submit_button}>
             <SubmitButton onSubmit={handleSubmit} />
           </div>
-          {/* <Link href="/history">
-            <button className={styled.history_button}>注文履歴を見る</button>
-          </Link> */}
         </div>
-      </div>
-      <div className={styled.fixed_buttons}>
-        <CallButton />
-        <CenterButton />
-        <OrderCartButton />
       </div>
     </div>
   );
