@@ -4,8 +4,19 @@ height: 250px;
 background-color: white;
 border: 3px solid black;
 border-radius: 10px;
-display: flex;
 align-items: center;
 justify-content: center;
 margin: 0;
+color: red;
+}
+
+.margin {
+    height: 130px;
+}
+
+.look {
+    color: white;
+    width: 80px;
+    height: 80px;
+    background-color: red;
 }
