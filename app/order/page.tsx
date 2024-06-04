@@ -66,6 +66,12 @@ const Order = () => {
           onItemClick={handleItemClick}
         />
       </div>
+      {/* <div>
+          <TemporaryTable items={items} onRemoveItem={removeItem} />
+          <div className={styled.submit_button}>
+            <SubmitButton onSubmit={handleSubmit} />
+          </div>
+        </div> */}
       <div className={styled.fixed_buttons}>
         <CallButton />
         <CenterButton />
@@ -73,12 +79,7 @@ const Order = () => {
           <Link href="/history">
           <button className={styled.history_button}>注文履歴</button>
         </Link> </div>
-        <div>
-          <TemporaryTable items={items} onRemoveItem={removeItem} />
-          <div className={styled.submit_button}>
-            <SubmitButton onSubmit={handleSubmit} />
-          </div>
-        </div>
+        <OrderCartButton />
       </div>
     </div>
   );
