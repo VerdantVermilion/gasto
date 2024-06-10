@@ -1,9 +1,4 @@
 .submit {
-  display: none;
-}
-
-/* 
-.submit {
   background-color: rgb(255, 153, 0);
   font-size: 24px;
   color: white;
@@ -31,4 +26,4 @@
   padding: 20px;
   border-radius: 5px;
   text-align: center;
-} */
+} 
