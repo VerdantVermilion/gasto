@@ -6,6 +6,9 @@ import TopButton from "./components/topButton/TopButton";
 import NigiriButton from "./components/nigiriButton/NigiriButton";
 import TemporaryTable from "./components/temporaryTable/TemporaryTable";
 import SubmitButton from "./components/submitButton/SubmitButton";
+import CenterButton from "./components/centerButton/CenterButton";
+import CallButton from "./components/callButton/CallButton";
+import OrderCartButton from "./components/orderCartButton/OrderCartButton";
 import Link from 'next/link';
 
 interface Item {
@@ -62,15 +65,21 @@ const Order = () => {
           category={selectedCategory}
           onItemClick={handleItemClick}
         />
-        <div>
+      </div>
+      {/* <div>
           <TemporaryTable items={items} onRemoveItem={removeItem} />
           <div className={styled.submit_button}>
             <SubmitButton onSubmit={handleSubmit} />
           </div>
+        </div> */}
+      <div className={styled.fixed_buttons}>
+        <CallButton />
+        <CenterButton />
+        <div>
           <Link href="/history">
-            <button className={styled.history_button}>注文履歴を見る</button>
-          </Link>
-        </div>
+          <button className={styled.history_button}>注文履歴</button>
+        </Link> </div>
+        <OrderCartButton />
       </div>
     </div>
   );

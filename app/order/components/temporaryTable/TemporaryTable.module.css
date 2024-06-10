@@ -1,4 +1,8 @@
 .table {
+  display: none;
+}
+
+/* .table {
   background-color: white;
   text-align: right;
   empty-cells: show;
@@ -40,4 +44,4 @@
   color: white;
   border: 1px solid #000000;
   width: 30px;
-}
+} */

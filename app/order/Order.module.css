@@ -20,14 +20,40 @@
 }
 
 .history_button {
+  width: 100px;
   padding: 10px 20px;
   background-color: #4caf50;
   color: white;
-  border: none;
-  border-radius: 5px;
+  border: 3px solid white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
   cursor: pointer;
 }
 
 .history_button:hover {
   background-color: #45a049;
 }
+
+.fixed_buttons {
+  position: fixed;
+  top: 0%;
+  right: 0;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 1rem; */
+}
+
+.ordercart_trans_button {
+  width: 100px;
+  height: 80px;
+  background-color: pink;
+  border: 3px solid black;
+  border-top: none;
+  border-radius: 10px;
+}
+
