@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from "react";
-import styled from "./MenuDetailForm.module.css";
+import styles from "./MenuDetailForm.module.css";
 
 interface MenuDetailFormProps {
   item: { name: string; category: string; price: number };
@@ -12,27 +12,28 @@ interface MenuDetailFormProps {
 
 const MenuDetailForm: React.FC<MenuDetailFormProps> = ({ item, onSave, onClose }) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [price, setPrice] = useState<number>(item.price);
 
   const handleSave = () => {
-    onSave({ name: item.name, quantity, price });
+    onSave({ name: item.name, quantity, price: item.price });
     onClose();
   };
 
   return (
-    <div className={styled.overlay}>
-      <div className={styled.formContainer}>
+    <div className={styles.overlay}>
+      <div className={styles.formContainer}>
         <h2>{item.name}</h2>
-        <label>
+        <label className={styles.label}>
           数量:
-          <input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+            min="1"
+            className={styles.input}
+          />
         </label>
-        <label>
-          価格:
-          <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
-        </label>
-        <button onClick={handleSave}>保存</button>
-        <button onClick={onClose}>キャンセル</button>
+        <button onClick={handleSave} className={styles.button}>保存</button>
+        <button onClick={onClose} className={styles.button}>キャンセル</button>
       </div>
     </div>
   );

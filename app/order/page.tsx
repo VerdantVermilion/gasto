@@ -49,7 +49,6 @@ const Order = () => {
 
   const handleItemClick = (item: { name: string; category: string; price: number }) => {
     setSelectedItem(item);
-    setBgColor("blue");
   };
 
   const handleSaveItemDetails = (details: { name: string; quantity: number; price: number }) => {
@@ -89,7 +88,6 @@ const Order = () => {
         <NigiriButton
           category={selectedCategory}
           onItemClick={handleItemClick}
-          onBackgroundChange={() => setBgColor("blue")}
         />
       </div>
       <div className={styles.fixed_buttons}>

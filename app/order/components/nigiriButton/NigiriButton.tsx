@@ -5,7 +5,6 @@ import styled from "./NigiriButton.module.css";
 interface NigiriButtonProps {
   category: string;
   onItemClick: (item: { name: string; category: string; price: number }) => void;
-  onBackgroundChange: () => void;
 }
 
 // ランダムな価格を生成する関数
@@ -92,7 +91,7 @@ const allItems = [
 ];
 const ITEMS_PER_PAGE = 6;
 
-const NigiriButton = ({ category, onItemClick, onBackgroundChange }: NigiriButtonProps) => {
+const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const filteredItems = allItems.filter((item) => {
@@ -116,7 +115,6 @@ const NigiriButton = ({ category, onItemClick, onBackgroundChange }: NigiriButto
   };
 
   const handleClick = (item: { name: string; category: string; price: number }) => {
-    onBackgroundChange();
     onItemClick(item);
   };
 
