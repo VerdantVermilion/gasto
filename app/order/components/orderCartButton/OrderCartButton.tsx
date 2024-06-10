@@ -1,14 +1,18 @@
+// app/components/orderCartButton/OrderCartButton.tsx
 "use client";
 
-import React from 'react';
-import styled from "./OrderCartButton.module.css";
+import React from "react";
 
-const orderCartButton = () => {
-  return <div className={styled.main}>
-    <button>注文かご</button>
-    <div className={styled.margin}></div>
-  <div className={styled.look}>注文かごをみる</div>
-  </div>
+interface OrderCartButtonProps {
+  onClick: () => void;
+}
+
+const OrderCartButton: React.FC<OrderCartButtonProps> = ({ onClick }) => {
+  return (
+    <button onClick={onClick}>
+      カートを見る
+    </button>
+  );
 };
 
-export default orderCartButton;
+export default OrderCartButton;

@@ -5,6 +5,7 @@ import styled from "./NigiriButton.module.css";
 interface NigiriButtonProps {
   category: string;
   onItemClick: (item: { name: string; category: string; price: number }) => void;
+  onBackgroundChange: () => void;
 }
 
 // ランダムな価格を生成する関数
@@ -89,10 +90,9 @@ const allItems = [
   { name: "大ライス", category: "お得なセット/単品ライス", price: 200 },
 
 ];
-
 const ITEMS_PER_PAGE = 6;
 
-const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
+const NigiriButton = ({ category, onItemClick, onBackgroundChange }: NigiriButtonProps) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const filteredItems = allItems.filter((item) => {
@@ -115,6 +115,11 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
   };
 
+  const handleClick = (item: { name: string; category: string; price: number }) => {
+    onBackgroundChange();
+    onItemClick(item);
+  };
+
   return (
     <div className={styled.nigiri_screen}>
       <ul className={styled.nigiris}>
@@ -122,7 +127,7 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
           <li
             className={styled.nigiri_button}
             key={item.name}
-            onClick={() => onItemClick(item)}
+            onClick={() => handleClick(item)}
           >
             <div>{item.name}</div>
             <div className={styled.price}>{item.price}円</div>
