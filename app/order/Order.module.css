@@ -2,6 +2,10 @@
   background-color: red;
   color: white;
   padding: 10px;
+  width: 1000px;
+}
+.tops {
+  width: 1070px;
 }
 
 .nigiri_button {
@@ -10,9 +14,18 @@
   padding: 10px;
 }
 
-.main_order{
+.main_container{
+  width: 1000px;
   display: flex;
+}
+
+.main_order{
+  /* display: flex; */
   justify-content: space-around;
+}
+
+.right_container{
+  padding: 0,0px,0,0;
 }
 
 .submit_button {
@@ -38,10 +51,6 @@
 }
 
 .fixed_buttons {
-  position: fixed;
-  top: 0%;
-  right: 0;
-  width: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,4 +65,3 @@
   border-top: none;
   border-radius: 10px;
 }
-
