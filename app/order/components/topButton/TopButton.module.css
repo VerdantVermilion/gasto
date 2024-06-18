@@ -17,8 +17,7 @@
 
 .top_button {
   background-color: rgb(246, 110, 110);
-  border: 1px solid #a84646;
-  border: 5px outset rgb(212, 83, 83);
+
   color: white;
   padding: 10px;
   cursor: pointer;
