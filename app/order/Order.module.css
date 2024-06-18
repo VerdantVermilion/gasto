@@ -4,6 +4,7 @@
   padding: 10px;
   width: 1000px;
 }
+
 .tops {
   width: 1070px;
 }
@@ -24,20 +25,16 @@
   justify-content: space-around;
 }
 
-.right_container{
-  padding: 0,0px,0,0;
-}
-
 .submit_button {
   margin-bottom: 20px; /* 下にスペースを確保 */
 }
 
 .history_button {
-  width: 100px;
-  padding: 10px 20px;
+  width: 110px;
+  padding: 10px 30px;
   background-color: #4caf50;
   color: white;
-  border: 3px solid white;
+  border: 3px solid black;
   border-radius: 10px;
   display: flex;
   align-items: center;

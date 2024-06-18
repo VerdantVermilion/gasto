@@ -26,7 +26,7 @@ const CallButton = () => {
 
   return (
     <div>
-      <button className={styles.callButton} onClick={handleButtonClick}>Call</button>
+      <button className={styles.callButton} onClick={handleButtonClick}>店員を呼ぶ</button>
       {showPopup && (
         <div className={styles.popup}>
           <p>店員を呼びますか？</p>
