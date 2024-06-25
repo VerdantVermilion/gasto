@@ -43,6 +43,16 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
     );
   };
 
+  const handleIncreaseQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
+
   return (
     <div className={styles.overlay}>
       <div className={styles.formContainer}>
@@ -58,9 +68,9 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
         </div>
 
         {step === 1 && (
-          <div className={styles.main_container}>
+          <div>
             <h2>{item.name}</h2>
-            <button onClick={handleNextStep} className={styles.nextbutton}>
+            <button onClick={handleNextStep} className={styles.button}>
               次へ
             </button>
           </div>
@@ -81,18 +91,18 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
               <label className={styles.optionLabel}>
                 <input
                   type="checkbox"
-                  checked={selectedOptions.includes("パンセット")}
-                  onChange={() => handleOptionChange("パンセット")}
-                />
-                パンセット
-              </label>
-              <label className={styles.optionLabel}>
-                <input
-                  type="checkbox"
                   checked={selectedOptions.includes("ドリンクバーセット")}
                   onChange={() => handleOptionChange("ドリンクバーセット")}
                 />
                 ドリンクバーセット
+              </label>
+              <label className={styles.optionLabel}>
+                <input
+                  type="checkbox"
+                  checked={selectedOptions.includes("パンセット")}
+                  onChange={() => handleOptionChange("パンセット")}
+                />
+                パンセット
               </label>
             </div>
             <button onClick={handlePrevStep} className={styles.button}>
@@ -107,21 +117,16 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
         {step === 3 && (
           <div>
             <h2>数量選択</h2>
-            <label className={styles.label}>
-              数量:
-              <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                min="1"
-                className={styles.input}
-              />
-            </label>
+            <div className={styles.quantityContainer}>
+              <button onClick={handleDecreaseQuantity} className={styles.quantityButton}>-</button>
+              <span className={styles.quantityDisplay}>{quantity}</span>
+              <button onClick={handleIncreaseQuantity} className={styles.quantityButton}>+</button>
+            </div>
             <button onClick={handlePrevStep} className={styles.button}>
               戻る
             </button>
             <button onClick={handleSave} className={styles.button}>
-              注文かごに入れる
+              保存
             </button>
           </div>
         )}

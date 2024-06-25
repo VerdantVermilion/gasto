@@ -94,3 +94,29 @@
 .main_container{
   height: 380px;
 }
+
+.quantityContainer{
+  display: flex;
+}
+
+.quantityDisplay{
+  width: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.quantityButton {
+  width: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 40px;
+  /* margin-top: auto; */
+}
