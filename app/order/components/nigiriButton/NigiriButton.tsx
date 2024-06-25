@@ -120,6 +120,15 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
 
   return (
     <div className={styled.nigiri_screen}>
+      <div className={styled.nigiri_container}>
+        <div className={styled.pre_page}><button
+          className={styled.page_button}
+          onClick={goToPreviousPage}
+          disabled={currentPage === 0}
+        >
+          ＜
+          前へ
+        </button></div>
       <ul className={styled.nigiris}>
         {currentItems.map((item) => (
           <li
@@ -132,25 +141,21 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
           </li>
         ))}
       </ul>
-      <div className={styled.pagination}>
-        <button
-          className={styled.page_button}
-          onClick={goToPreviousPage}
-          disabled={currentPage === 0}
-        >
-          前へ
-        </button>
-        <span className={styled.number}>
-          {currentPage + 1} / {totalPages}
-        </span>
-        <button
+      <div className={styled.next_page}>
+      <button
           className={styled.page_button}
           onClick={goToNextPage}
           disabled={currentPage === totalPages - 1}
         >
+          ＞
           次へ
-        </button>
-      </div>
+        </button></div>
+    </div>
+      {/* <div className={styled.pagination}> */}
+        <span className={styled.number}>
+          {currentPage + 1} / {totalPages}
+        </span>
+      {/* </div> */}
     </div>
   );
 };

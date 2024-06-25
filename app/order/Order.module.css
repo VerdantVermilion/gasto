@@ -2,6 +2,11 @@
   background-color: red;
   color: white;
   padding: 10px;
+  width: 1000px;
+}
+
+.tops {
+  width: 1070px;
 }
 
 .nigiri_button {
@@ -10,8 +15,13 @@
   padding: 10px;
 }
 
-.main_order{
+.main_container{
+  width: 1000px;
   display: flex;
+}
+
+.main_order{
+  /* display: flex; */
   justify-content: space-around;
 }
 
@@ -20,11 +30,11 @@
 }
 
 .history_button {
-  width: 100px;
-  padding: 10px 20px;
+  width: 110px;
+  padding: 10px 30px;
   background-color: #4caf50;
   color: white;
-  border: 3px solid white;
+  border: 3px solid black;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -38,10 +48,6 @@
 }
 
 .fixed_buttons {
-  position: fixed;
-  top: 0%;
-  right: 0;
-  width: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,4 +62,3 @@
   border-top: none;
   border-radius: 10px;
 }
-

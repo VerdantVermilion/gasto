@@ -3,15 +3,14 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  width: 1200px;
 }
 
 .selectedTab {
-  background-color: #fb0707;
+  background-color: white;
   padding: 10px;
   cursor: pointer;
-  color: white;
-  border: 1px solid #a84646;
+  color: #fb0707;
+  border: 5px solid #fb0707;
 }
 
 .top_button {

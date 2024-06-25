@@ -1,10 +1,15 @@
 .nigiri_screen {
-  background-color: black;
-  width: 800px;
+  background-color: rgb(243, 227, 227);
+  width: 1000px;
   display: flex;
   flex-direction: column;
   margin: 20px;
+  margin-left: 40px;
   min-height: 650px; /* 最小の高さを設定 */
+}
+
+.nigiri_container{
+  display: flex;
 }
 
 .nigiris {
@@ -13,7 +18,7 @@
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 10px;
+  margin-left: 60px;
   margin-top: 20px;
 }
 
@@ -24,10 +29,11 @@
   width: 250px;
   height: 250px;
   margin: 0 10px 10px 0;
+  border-radius: 10px;
 }
 
 .pagination {
-  width: 790px;
+  width: 870px;
   display: flex;
   justify-content: center;
   justify-content: space-between;
@@ -39,10 +45,15 @@
   background-color: azure;
   color: black;
   padding: 10px;
+  height: 300px;
+  width: 50px;
+  margin-top: 80px;
 }
 
 .number {
-  color: white;
+  color: black;
+  text-align: center;
+  font-size: 30px;
 }
 
 .price {

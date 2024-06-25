@@ -83,36 +83,44 @@ const Order = () => {
 
   return (
     <div style={{ backgroundColor: bgColor }}>
-      <TopButton onCategoryChange={handleCategoryChange} />
-      <div className={styles.main_order}>
-        <NigiriButton
-          category={selectedCategory}
-          onItemClick={handleItemClick}
-        />
-      </div>
-      <div className={styles.fixed_buttons}>
-        <CallButton />
-        <CenterButton />
-        <div>
-          <Link href="/history">
-            <button className={styles.history_button}>注文履歴</button>
-          </Link> 
+      <div className={styles.main_container}>
+      <div className={styles.order_container}>
+        <div className={styles.tops}>
+          <TopButton onCategoryChange={handleCategoryChange}/>
         </div>
-        <OrderCartButton onClick={handleCartButtonClick} />
-      </div>
-      {selectedItem && (
-        <MenuDetailForm
-          item={selectedItem}
-          onSave={handleSaveItemDetails}
-          onClose={handleCloseForm}
-        />
-      )}
-      {isCartVisible && (
-        <div>
-          <CartContent items={items} />
-          <SubmitButton onSubmit={handleSubmit} />
+        <div className={styles.main_order}>
+          <NigiriButton
+            category={selectedCategory}
+            onItemClick={handleItemClick}
+          />
         </div>
-      )}
+      </div>
+        <div className={styles.right_container}>
+          <div className={styles.fixed_buttons}>
+            <CallButton />
+            <CenterButton />
+            <div>
+              <Link href="/history">
+                <button className={styles.history_button}>注文履歴</button>
+              </Link> 
+            </div>
+            <OrderCartButton onClick={handleCartButtonClick} />
+          </div>
+          {selectedItem && (
+            <MenuDetailForm
+              item={selectedItem}
+              onSave={handleSaveItemDetails}
+              onClose={handleCloseForm}
+            />
+          )}
+          {isCartVisible && (
+            <div>
+              <CartContent items={items} />
+              <SubmitButton onSubmit={handleSubmit} />
+            </div>
+          )}   
+      </div>
+      </div>
     </div>
   );
 };
