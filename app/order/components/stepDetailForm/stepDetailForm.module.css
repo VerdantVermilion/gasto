@@ -32,16 +32,18 @@
 .titles {
   display: flex;
   /* margin-right: 50px; */
-  background-color: #888;
+  background-color: #d3d3d3;
+  height: 60px;
 }
 
 .titles p {
-  padding: 10px 30px 10px 20px;
+  padding: 15px 20px 10px 40px;
 }
 
 #selected {
   background-color: #4caf50;
   color: white;
+  position: relative;
 }
 
 /* TODO: 三角を追加 */
@@ -52,6 +54,18 @@
   width: 20px;
   height: 20px;
 } */
+
+#selected::after {
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #4caf50;
+  border-top: 30px solid transparent;
+  content: "";
+  height: 0;
+  inset: 0 -30px auto auto;
+  position: absolute;
+  width: 0;
+  z-index: 1;
+}
 
 .label {
   display: flex;
