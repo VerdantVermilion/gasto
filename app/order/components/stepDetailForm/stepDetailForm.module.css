@@ -1,0 +1,154 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.formContainer {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  width: 790px;
+  height: 550px;
+}
+
+.step_titles {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.titles {
+  display: flex;
+  /* margin-right: 50px; */
+  background-color: #d3d3d3;
+  height: 60px;
+}
+
+.titles p {
+  padding: 15px 20px 10px 40px;
+}
+
+#selected {
+  background-color: #4caf50;
+  color: white;
+  position: relative;
+}
+
+/* TODO: 三角を追加 */
+/* #selected::after {
+  content: "▶︎";
+  display: inline-block;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+} */
+
+#selected::after {
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #4caf50;
+  border-top: 30px solid transparent;
+  content: "";
+  height: 0;
+  inset: 0 -30px auto auto;
+  position: absolute;
+  width: 0;
+  z-index: 1;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 40px;
+  margin-left: 10px;
+}
+
+.cancel_button{
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  bottom: 10px;
+}
+
+.button {
+  margin: 5px;
+  margin-top: 100px;
+  margin-left: 100px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  bottom: 10px;
+  text-align: center;
+}
+
+.nextbutton {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 420px;
+  width: 100px;
+  height: 60px;
+  font-size: 30px;
+}
+
+
+.main_container{
+  height: 380px;
+}
+
+.quantityContainer{
+  display: flex;
+}
+
+.quantityDisplay{
+  width: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.quantityButton {
+  width: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 40px;
+  /* margin-top: auto; */
+}
+
+.op_container{
+  margin-left: 100px;;
+}
