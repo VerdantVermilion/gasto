@@ -58,11 +58,11 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
       <div className={styles.formContainer}>
         <div className={styles.step_titles}>
           <div className={styles.titles}>
-            <p id={step === 1 ? styles.selected : ""}>メニュー選択</p>
-            <p id={step === 2 ? styles.selected : ""}>オプション選択</p>
-            <p id={step === 3 ? styles.selected : ""}>数量選択</p>
+            <p id={step === 1 ? styles.selected : ""} onClick={() => setStep(1)}>メニュー選択</p>
+            <p id={step === 2 ? styles.selected : ""} onClick={() => setStep(2)}>オプション選択</p>
+            <p id={step === 3 ? styles.selected : ""} onClick={() => setStep(3)}>数量選択</p>
           </div>
-          <button onClick={onClose} className={styles.button}>
+          <button onClick={onClose} className={styles.cancel_button}>
             キャンセル
           </button>
         </div>
@@ -115,7 +115,7 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
         )}
 
         {step === 3 && (
-          <div>
+          <div className={styles.op_container}>
             <h2>数量選択</h2>
             <div className={styles.quantityContainer}>
               <button onClick={handleDecreaseQuantity} className={styles.quantityButton}>-</button>
