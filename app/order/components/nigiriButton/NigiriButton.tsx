@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import styled from "./NigiriButton.module.css";
 
 interface NigiriButtonProps {
   category: string;
-  onItemClick: (item: { name: string; category: string; price: number }) => void;
+  onItemClick: (item: { name: string; category: string; price: number; image: string }) => void;
 }
 
 // ランダムな価格を生成する関数
@@ -50,12 +51,12 @@ const allItems = [
   { name: "ミニねぎとろ丼", category: "丼/麺類/うどん", price: 420 },
   { name: "ミニしらす丼", category: "丼/麺類/うどん", price: 420 },
   { name: "ミニたれカツ丼", category: "丼/麺類/うどん", price: 420 },
-  { name: "たっぷりマヨコーンピザ", category: "生パスタ/ライトミール", price: 500 },
-  { name: "マルゲリータピザ", category: "生パスタ/ライトミール", price: 770 },
-  { name: "ちょいピザ　マルゲリータ", category: "生パスタ/ライトミール", price: 370 },
-  { name: "魚介たっぷりシーフードピザ", category: "生パスタ/ライトミール", price: 920 },
-  { name: "ちょいピザ　マヨコーン", category: "生パスタ/ライトミール", price: 320 },
-  { name: "シーフードトマトクリーム", category: "生パスタ/ライトミール", price: 870 },
+  { name: "たっぷりマヨコーンピザ", category: "生パスタ/ライトミール", price: 500, image: "/images/mayo.webp"},
+  { name: "マルゲリータピザ", category: "生パスタ/ライトミール", price: 770, image: "/images/matugerita.webp"},
+  { name: "ちょいピザ　マルゲリータ", category: "生パスタ/ライトミール", price: 370 , image:"/images/mini-maru.webp"},
+  { name: "魚介たっぷりシーフードピザ", category: "生パスタ/ライトミール", price: 920,image:"/images/seafood.webp"},
+  { name: "ちょいピザ　マヨコーン", category: "生パスタ/ライトミール", price: 320 ,image:"/images/mini-mayo.webp"},
+  { name: "シーフードトマトクリーム", category: "生パスタ/ライトミール", price: 870,image:"/images/tomato-seafood.webp"},
   { name: "濃厚ミートソース", category: "生パスタ/ライトミール", price: 570 },
   { name: "しらすと九条ネギの出汁醤油", category: "生パスタ/ライトミール", price: 670 },
   { name: "ガストバーガー", category: "生パスタ/ライトミール", price: 700 },
@@ -90,7 +91,6 @@ const allItems = [
 
 ];
 const ITEMS_PER_PAGE = 6;
-
 const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -114,48 +114,48 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
   };
 
-  const handleClick = (item: { name: string; category: string; price: number }) => {
+  const handleClick = (item: { name: string; category: string; price: number; image: string }) => {
     onItemClick(item);
   };
 
   return (
     <div className={styled.nigiri_screen}>
       <div className={styled.nigiri_container}>
-        <div className={styled.pre_page}><button
-          className={styled.page_button}
-          onClick={goToPreviousPage}
-          disabled={currentPage === 0}
-        >
-          ＜
-          前へ
-        </button></div>
-      <ul className={styled.nigiris}>
-        {currentItems.map((item) => (
-          <li
-            className={styled.nigiri_button}
-            key={item.name}
-            onClick={() => handleClick(item)}
+        <div className={styled.pre_page}>
+          <button
+            className={styled.page_button}
+            onClick={goToPreviousPage}
+            disabled={currentPage === 0}
           >
-            <div>{item.name}</div>
-            <div className={styled.price}>{item.price}円</div>
-          </li>
-        ))}
-      </ul>
-      <div className={styled.next_page}>
-      <button
-          className={styled.page_button}
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages - 1}
-        >
-          ＞
-          次へ
-        </button></div>
-    </div>
-      {/* <div className={styled.pagination}> */}
-        <span className={styled.number}>
-          {currentPage + 1} / {totalPages}
-        </span>
-      {/* </div> */}
+            ＜前へ
+          </button>
+        </div>
+        <ul className={styled.nigiris}>
+          {currentItems.map((item) => (
+            <li
+              className={styled.nigiri_button}
+              key={item.name}
+              onClick={() => handleClick(item)}
+            >
+              <div>{item.name}</div>
+              <div className={styled.price}>{item.price}円</div>
+              <Image src={item.image} alt={item.name} className={styled.image} width={100} height={100} />
+            </li>
+          ))}
+        </ul>
+        <div className={styled.next_page}>
+          <button
+            className={styled.page_button}
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages - 1}
+          >
+            ＞次へ
+          </button>
+        </div>
+      </div>
+      <span className={styled.number}>
+        {currentPage + 1} / {totalPages}
+      </span>
     </div>
   );
 };

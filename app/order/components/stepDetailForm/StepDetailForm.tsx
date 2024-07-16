@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "./stepDetailForm.module.css";
 
 interface MenuDetailFormProps {
-  item: { name: string; category: string; price: number };
+  item: { name: string; category: string; price: number; image: string };
   onSave: (details: { name: string; quantity: number; price: number; options: string[] }) => void;
   onClose: () => void;
 }
@@ -70,6 +71,7 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
         {step === 1 && (
           <div>
             <h2>{item.name}</h2>
+            <Image src={item.image} alt={item.name} width={300} height={200} className={styles.image} />
             <button onClick={handleNextStep} className={styles.button}>
               次へ
             </button>
@@ -116,7 +118,7 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
 
         {step === 3 && (
           <div className={styles.op_container}>
-            <h2>数量選択</h2>
+            <h2 className={styles.subtitle}>数量を選択してください</h2>
             <div className={styles.quantityContainer}>
               <button onClick={handleDecreaseQuantity} className={styles.quantityButton}>-</button>
               <span className={styles.quantityDisplay}>{quantity}</span>
