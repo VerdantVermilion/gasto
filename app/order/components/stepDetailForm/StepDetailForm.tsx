@@ -63,18 +63,20 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
             <p id={step === 2 ? styles.selected : ""} onClick={() => setStep(2)}>オプション選択</p>
             <p id={step === 3 ? styles.selected : ""} onClick={() => setStep(3)}>数量選択</p>
           </div>
-          <button onClick={onClose} className={styles.cancel_button}>
-            キャンセル
-          </button>
         </div>
 
         {step === 1 && (
           <div>
-            <h2>{item.name}</h2>
+            <h2 className={styles.item_name}>{item.name}</h2>
             <Image src={item.image} alt={item.name} width={300} height={200} className={styles.image} />
+            <div className={styles.divdiv}>
             <button onClick={handleNextStep} className={styles.button}>
               次へ
             </button>
+            <button onClick={onClose} className={styles.cancel_button}>
+            キャンセル
+            </button>
+            </div>
           </div>
         )}
 
@@ -113,6 +115,9 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
             <button onClick={handleNextStep} className={styles.button}>
               次へ
             </button>
+            <button onClick={onClose} className={styles.cancel_button}>
+            キャンセル
+          </button>
           </div>
         )}
 
@@ -130,6 +135,9 @@ const StepDetailForm: React.FC<MenuDetailFormProps> = ({
             <button onClick={handleSave} className={styles.button}>
               保存
             </button>
+            <button onClick={onClose} className={styles.cancel_button}>
+            キャンセル
+          </button>
           </div>
         )}
       </div>
