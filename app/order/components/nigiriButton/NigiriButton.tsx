@@ -5,7 +5,9 @@ import styled from "./NigiriButton.module.css";
 
 interface NigiriButtonProps {
   category: string;
+  categories: string[];
   onItemClick: (item: { name: string; category: string; price: number; image: string }) => void;
+  onCategoryChange: (newCategory: string) => void; // カテゴリ変更のためのコールバック関数を追加
 }
 
 // ランダムな価格を生成する関数
@@ -91,7 +93,17 @@ const allItems = [
 
 ];
 const ITEMS_PER_PAGE = 6;
-const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
+const categories = [
+  "トップ",
+  "ステーキ/ハンバーグ",
+  "チーズIN/チキン",
+  "和膳",
+  "丼/麺類/うどん",
+  "生パスタ/ライトミール",
+  "から好しのからあげ",
+  "お得なセット/単品ライス",
+];
+const NigiriButton = ({ category, onItemClick, onCategoryChange }: NigiriButtonProps) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const filteredItems = allItems.filter((item) => {
@@ -111,7 +123,17 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
   };
 
   const goToNextPage = () => {
-    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
+    if (currentPage < totalPages - 1) {
+      setCurrentPage((prev) => prev + 1);
+    } else {
+      // 現在のカテゴリが最後のカテゴリのときに、次のカテゴリへ移動
+      const currentCategoryIndex = categories.indexOf(category);
+      if (currentCategoryIndex < categories.length - 1) {
+        const nextCategory = categories[currentCategoryIndex + 1];
+        onCategoryChange(nextCategory); // 親コンポーネントにカテゴリ変更を伝える
+        setCurrentPage(0); // 次のカテゴリの最初のページに移動
+      }
+    }
   };
 
   const handleClick = (item: { name: string; category: string; price: number; image: string }) => {
@@ -144,13 +166,25 @@ const NigiriButton = ({ category, onItemClick }: NigiriButtonProps) => {
           ))}
         </ul>
         <div className={styled.next_page}>
-          <button
-            className={styled.page_button}
-            onClick={goToNextPage}
-            disabled={currentPage === totalPages - 1}
-          >
-            ＞次へ
-          </button>
+        <button
+  className={styled.page_button}
+  onClick={() => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage((prev) => prev + 1);
+    } else {
+      const currentCategoryIndex = categories.indexOf(category);
+      if (currentCategoryIndex < categories.length - 1) {
+        const nextCategory = categories[currentCategoryIndex + 1];
+        onCategoryChange(nextCategory);  // categoriesを変更するためのコールバック
+        setCurrentPage(0);
+      }
+    }
+  }}
+  disabled={currentPage === totalPages - 1 && categories.indexOf(category) === categories.length - 1}
+>
+  ＞次へ
+</button>
+
         </div>
       </div>
       <span className={styled.number}>
