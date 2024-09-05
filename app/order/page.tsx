@@ -10,8 +10,9 @@ import CallButton from "./components/callButton/CallButton";
 import CenterButton from "./components/centerButton/CenterButton";
 import OrderCartButton from "./components/orderCartButton/OrderCartButton";
 import SubmitButton from "./components/submitButton/SubmitButton";
-import Link from 'next/link';
-import CartContent from "./components/cartContent/CartContent";  // カート内容表示コンポーネントをインポート
+import Link from "next/link";
+import CartContent from "./components/cartContent/CartContent"; // カート内容表示コンポーネントをインポート
+import StepDetailform from "./components/stepDetailForm/StepDetailForm";
 
 interface Item {
   name: string;
@@ -22,6 +23,7 @@ interface Item {
 
 const Order = () => {
   const [selectedCategory, setSelectedCategory] = useState("トップ");
+  const [category, setCategory] = useState("トップ");
   const [items, setItems] = useState<Item[]>([]);
   const [orderHistory, setOrderHistory] = useState<Item[][]>([]);
   const [bgColor, setBgColor] = useState<string>("");
@@ -43,23 +45,40 @@ const Order = () => {
     setItems(items.filter((_, i) => i !== index));
   };
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory);  // カテゴリを更新
+    console.log(`カテゴリが${newCategory}に変更されました`);
   };
 
-  const handleItemClick = (item: { name: string; category: string; price: number }) => {
+  const [key, setKey] = useState(0);
+
+  
+  const handleItemClick = (item: {
+    name: string;
+    category: string;
+    price: number;
+  }) => {
     setSelectedItem(item);
   };
 
-  const handleSaveItemDetails = (details: { name: string; quantity: number; price: number }) => {
+  const handleSaveItemDetails = (details: {
+    name: string;
+    quantity: number;
+    price: number;
+  }) => {
     setItems((prevItems) => {
-      const existingItemIndex = prevItems.findIndex((existingItem) => existingItem.name === details.name);
+      const existingItemIndex = prevItems.findIndex(
+        (existingItem) => existingItem.name === details.name
+      );
       if (existingItemIndex >= 0) {
         const updatedItems = [...prevItems];
         updatedItems[existingItemIndex].quantity += details.quantity;
         return updatedItems;
       } else {
-        return [...prevItems, { ...details, category: selectedItem?.category || "その他" }];
+        return [
+          ...prevItems,
+          { ...details, category: selectedItem?.category || "その他" },
+        ];
       }
     });
     setSelectedItem(null);
@@ -72,8 +91,11 @@ const Order = () => {
   const handleSubmit = () => {
     setOrderHistory([...orderHistory, items]);
     setItems([]);
-    localStorage.setItem("orderHistory", JSON.stringify([...orderHistory, items]));
-  }
+    localStorage.setItem(
+      "orderHistory",
+      JSON.stringify([...orderHistory, items])
+    );
+  };
 
   const handleCartButtonClick = () => {
     setIsCartVisible(!isCartVisible);
@@ -84,17 +106,18 @@ const Order = () => {
   return (
     <div style={{ backgroundColor: bgColor }}>
       <div className={styles.main_container}>
-      <div className={styles.order_container}>
-        <div className={styles.tops}>
-          <TopButton onCategoryChange={handleCategoryChange}/>
-        </div>
-        <div className={styles.main_order}>
+        <div className={styles.order_container}>
+          <div className={styles.tops}>
+            <TopButton onCategoryChange={handleCategoryChange} />
+          </div>
+          <div className={styles.main_order}>
           <NigiriButton
-            category={selectedCategory}
+            category={category}
+            onCategoryChange={handleCategoryChange}
             onItemClick={handleItemClick}
           />
+          </div>
         </div>
-      </div>
         <div className={styles.right_container}>
           <div className={styles.fixed_buttons}>
             <CallButton />
@@ -102,12 +125,17 @@ const Order = () => {
             <div>
               <Link href="/history">
                 <button className={styles.history_button}>注文履歴</button>
-              </Link> 
+              </Link>
             </div>
             <OrderCartButton onClick={handleCartButtonClick} />
           </div>
           {selectedItem && (
-            <MenuDetailForm
+            // <MenuDetailForm
+            //   item={selectedItem}
+            //   onSave={handleSaveItemDetails}
+            //   onClose={handleCloseForm}
+            // />
+            <StepDetailform
               item={selectedItem}
               onSave={handleSaveItemDetails}
               onClose={handleCloseForm}
@@ -118,8 +146,8 @@ const Order = () => {
               <CartContent items={items} />
               <SubmitButton onSubmit={handleSubmit} />
             </div>
-          )}   
-      </div>
+          )}
+        </div>
       </div>
     </div>
   );
