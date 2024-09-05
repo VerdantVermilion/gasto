@@ -23,6 +23,7 @@ interface Item {
 
 const Order = () => {
   const [selectedCategory, setSelectedCategory] = useState("トップ");
+  const [category, setCategory] = useState("トップ");
   const [items, setItems] = useState<Item[]>([]);
   const [orderHistory, setOrderHistory] = useState<Item[][]>([]);
   const [bgColor, setBgColor] = useState<string>("");
@@ -44,10 +45,14 @@ const Order = () => {
     setItems(items.filter((_, i) => i !== index));
   };
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory);  // カテゴリを更新
+    console.log(`カテゴリが${newCategory}に変更されました`);
   };
 
+  const [key, setKey] = useState(0);
+
+  
   const handleItemClick = (item: {
     name: string;
     category: string;
@@ -106,10 +111,11 @@ const Order = () => {
             <TopButton onCategoryChange={handleCategoryChange} />
           </div>
           <div className={styles.main_order}>
-            <NigiriButton
-              category={selectedCategory}
-              onItemClick={handleItemClick}
-            />
+          <NigiriButton
+            category={category}
+            onCategoryChange={handleCategoryChange}
+            onItemClick={handleItemClick}
+          />
           </div>
         </div>
         <div className={styles.right_container}>
